@@ -1,5 +1,4 @@
 const express = require('express');
-const notes = require('../notes');
 const fs = require('fs');
 const indexRouter = require('./routes/index');
 const notesRouter = require('./routes/apiRoutes');
