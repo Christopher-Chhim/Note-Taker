@@ -13,8 +13,8 @@ Download insomnia.
 
 ## Usage
 
-Run 'node index.js' on the terminal. Answer the prompt to your liking and choose the desired license. Check to see if a sample README.md file has been generated and if it matches user input.
-For further instructions please refer to this link: (https://drive.google.com/file/d/1JOcXVV-yJe6nLiAT4vn6boulb35sA-6l/view)
+Run 'node index.js' on the terminal. Use the 'POST' method on Insomnia and alter the title and text to your liking. Once you hit the 'Send' button, check to make sure that the returned text and title is correspondent to your input and that a random ID for the note has been generated. Copy the localhost's link on the browser to check the functionality of your website. Upon loading the website, a 'Get Started' button should appear and redirect the user to the '/notes' route. The website should already contain preexisting notes and you should be able to generate a new note on the left-hand column of the website once the user hits 'Save Note'. Additionally, if the user so chooses to delete their current note, the 'Clear Form' button should erase the user's current note.  
+
 
 ## License
 
