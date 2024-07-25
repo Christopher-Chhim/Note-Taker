@@ -1,13 +1,11 @@
-const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const router = express.Router();
+const router = require('express').Router();
 const { v4: uuidv4 } = require('uuid');
 
 
-
 // Read db.json file and return all saved notes as JSON.
-router.get("/api/notes", (req, res) => {
+router.get("/notes", (req, res) => {
     const dbPath = path.join(__dirname, '../db/db.json');
 
     fs.readFile(dbPath, 'utf-8', (err, data) => {
@@ -27,7 +25,7 @@ router.get("/api/notes", (req, res) => {
 // should receive a new note to save on the request body, add it to the db.json file,
 // and then return the new note to the client. You'll need to find a way to give each
 // note a unique id when it's saved (look into npm packages that could do this for you).
-router.post('/api/notes', (req, res) => {
+router.post('/notes', (req, res) => {
     const dbPath = path.join(__dirname, '../db/db.json');
     
     fs.readFile(dbPath, 'utf-8', (err, data) => {
@@ -39,7 +37,7 @@ router.post('/api/notes', (req, res) => {
         try {
             const notes = JSON.parse(data);
             const newNote = {
-                id: uuidv4(), ... req.body
+                id: uuidv4(), ...req.body
             };
             notes.push(newNote);
 
@@ -52,7 +50,7 @@ router.post('/api/notes', (req, res) => {
                 res.json(newNote);
             });
         } catch (parseErr){
-            console.err("Error parsing JSON: ", parseErr);
+            console.error("Error parsing JSON: ", parseErr);
             return res.status(500).json({ error: 'Failed to parse notes' });
         }
     });

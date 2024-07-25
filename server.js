@@ -1,28 +1,20 @@
 const express = require('express');
-const fs = require('fs');
-const indexRouter = require('./routes/index');
-const notesRouter = require('./routes/apiRoutes');
-const path = require('path');
+const apiRouter = require('./routes/apiRoutes');
+const htmlRouter = require('./routes/html');
 
-const PORT = process.env.PORT || 3000;
 
 const app = express();
-app.use(express.static('public'));
+const PORT = process.env.PORT || 3000;
 
 // Middleware for parsing application/json and urlencoded data
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
 // Routers
-app.use('/', indexRouter);
-app.use('/', notesRouter);
-
-// Fallback route for when a user attempts to visit routes that don't exist
-app.get('*', (req, res) =>
-    res.send(
-        `Make a GET request using Insomnia to <a href "http://localhost:${PORT}/api/terms">http://localhost:${PORT}/api/terms</a>`
-    )
-);
+app.use('/api', apiRouter);
+app.use('/', htmlRouter);
 
 // Starting the server
 app.listen(PORT, () =>
